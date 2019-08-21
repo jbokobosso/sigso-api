@@ -1,0 +1,14 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Page d'acceuil pour les visiteurs
+GET     /                               controllers.HomeController.index()
+
+# CRUD table client
+GET     /client                         controllers.ClientController.getClientsAll()
+GET     /client/:clientId               controllers.ClientController.getClientById(clientId: Long)
+POST    /client                         controllers.ClientController.save(request:Request)
+PUT     /client/:clientId               controllers.ClientController.updateClient(request:Request, clientId: Long)
+
+
