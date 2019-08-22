@@ -8,7 +8,7 @@ import io.ebean.Finder;
 import java.util.Date;
 
 @Entity
-public class Utilisateurs {
+public class Utilisateurs extends Model {
     @Id
     public Long idUtilisateur;
     public String nom, prenom, tel, email, pseudo, mdp, typeUtilisateur;

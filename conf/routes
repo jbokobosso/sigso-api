@@ -11,4 +11,8 @@ GET     /client/:clientId               controllers.ClientController.getClientBy
 POST    /client                         controllers.ClientController.save(request:Request)
 PUT     /client/:clientId               controllers.ClientController.updateClient(request:Request, clientId: Long)
 
-
+# CRUD table achat
+GET     /achat                         controllers.AchatController.getAll()
+GET     /achat/:achatId               controllers.AchatController.getById(achatId: Long)
+POST    /achat                         controllers.AchatController.save(request:Request)
+PUT     /achat/:achatId               controllers.AchatController.update(request:Request, achatId: Long)

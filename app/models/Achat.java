@@ -7,7 +7,7 @@ import io.ebean.Finder;
 import java.util.Date;
 
 @Entity
-public class Achat {
+public class Achat extends Model {
     @Id
     public Long idAchat;
     public Integer qteAchat;
@@ -27,8 +27,17 @@ public class Achat {
     public Achat() {
     }
 
+    public Achat(Long idAchat, Integer qteAchat, Date dateAchat, Fournisseur fournisseur, Utilisateurs utilisateurs, Produit produit) {
+        this.idAchat = idAchat;
+        this.qteAchat = qteAchat;
+        this.dateAchat = dateAchat;
+        this.fournisseur = fournisseur;
+        this.utilisateurs = utilisateurs;
+        this.produit = produit;
+    }
+
     public Achat(Integer qteAchat, Date dateAchat, Fournisseur fournisseur, Utilisateurs utilisateurs,
-            Produit produit) {
+                 Produit produit) {
         this.qteAchat = qteAchat;
         this.dateAchat = dateAchat;
         this.fournisseur = fournisseur;
