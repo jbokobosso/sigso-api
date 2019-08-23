@@ -1,17 +1,22 @@
 package models;
 
-import play.data.format.Formats;
-
-import javax.persistence.*;
-import io.ebean.Model;
 import io.ebean.Finder;
-import java.util.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Fournisseur {
     @Id
     public Long idFournisseur;
+
     public String raisonSociale, tel, adresseFournisseur;
+
+    @OneToMany(mappedBy = "fournisseur", cascade = CascadeType.ALL)
+    List<Achat> achat;
 
     public  static Finder<Long, Fournisseur> find = new Finder<>(Fournisseur.class);
 

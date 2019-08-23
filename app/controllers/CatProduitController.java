@@ -66,9 +66,9 @@ public class CatProduitController {
             }
         });
         if (test.get() == 117)
-            return badRequest("The given achat was not found");
+            return badRequest("The given product category was not found");
         else if (test.get() == 119)
-            return badRequest("The given achat's id and the achat to be updated's id do not match");
+            return badRequest("The given category's id and the category to be updated's id do not match");
         else
             return ok(Json.toJson(Json.toJson(cat_to_be_modified)));
     }

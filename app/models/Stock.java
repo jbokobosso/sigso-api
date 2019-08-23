@@ -1,5 +1,6 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import play.data.format.Formats;
 
 import javax.persistence.*;
@@ -12,10 +13,14 @@ public class Stock {
     @Id
     public Long idStock;
     public Integer qteStock;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     public Date datePeremption;
+
     public Boolean estValide = Boolean.TRUE;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_achat")
     public Achat achat;
 
     public  static Finder<Long, Stock> find = new Finder<>(Stock.class);

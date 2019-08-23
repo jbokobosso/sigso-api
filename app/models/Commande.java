@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.ebean.Finder;
 import io.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -19,20 +16,20 @@ public class Commande extends Model {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     public Date dateCmde;
 
-    @ManyToOne
-    public Client client;
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+    List<Livraison> livraison;
 
-    @ManyToMany
-    public List<Produit> produit;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_client")
+    public Client client;
 
     public  static Finder<Long, Commande> find = new Finder<>(Commande.class);
 
     public Commande() {
     }
 
-    public Commande(Date dateCmde, Client client, List<Produit> produit) {
+    public Commande(Date dateCmde, Client client) {
         this.dateCmde = dateCmde;
         this.client = client;
-        this.produit = produit;
     }
 }
