@@ -1,18 +1,22 @@
 package models;
 
-import play.data.format.Formats;
-
-import javax.persistence.*;
-import io.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.ebean.Finder;
+import io.ebean.Model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.util.Date;
-import models.*;
 import java.util.List;
 
 @Entity
-public class Commande {
+public class Commande extends Model {
     @Id
     public Long idCmde;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     public Date dateCmde;
 
     @ManyToOne

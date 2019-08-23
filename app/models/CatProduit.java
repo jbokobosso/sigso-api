@@ -8,7 +8,7 @@ import io.ebean.Finder;
 import java.util.Date;
 
 @Entity
-public class CatProduit {
+public class CatProduit extends Model {
     
     @Id
     public Long idCatProd;

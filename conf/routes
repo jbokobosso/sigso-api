@@ -16,3 +16,15 @@ GET     /achat                         controllers.AchatController.getAll()
 GET     /achat/:achatId               controllers.AchatController.getById(achatId: Long)
 POST    /achat                         controllers.AchatController.save(request:Request)
 PUT     /achat/:achatId               controllers.AchatController.update(request:Request, achatId: Long)
+
+# CRUD table catProduit
+GET     /catProduit                         controllers.CatProduitController.getAll()
+GET     /catProduit/:catProduitId               controllers.CatProduitController.getById(catProduitId: Long)
+POST    /catProduit                         controllers.CatProduitController.save(request:Request)
+PUT     /catProduit/:catProduitId               controllers.CatProduitController.update(request:Request, catProduitId: Long)
+
+# CRUD table Commande
+GET     /commande                         controllers.CommandeController.getAll()
+GET     /commande/:idCommande               controllers.CommandeController.getById(idCommande: Long)
+POST    /commande                         controllers.CommandeController.save(request:Request)
+PUT     /commande/:idCommande               controllers.CommandeController.update(request:Request, idCommande:Long)
