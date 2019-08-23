@@ -2,6 +2,7 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.ebean.Finder;
+import io.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,7 +11,7 @@ import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity
-public class Livraison {
+public class Livraison extends Model {
 
     @Id
     public Long idLivraison;

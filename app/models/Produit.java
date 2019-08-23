@@ -1,12 +1,13 @@
 package models;
 
 import io.ebean.Finder;
+import io.ebean.Model;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Produit {
+public class Produit extends Model {
 
     @Id
     public Long idProduit;

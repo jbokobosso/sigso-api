@@ -9,7 +9,7 @@ import io.ebean.Finder;
 import java.util.Date;
 
 @Entity
-public class Stock {
+public class Stock extends Model {
     @Id
     public Long idStock;
     public Integer qteStock;

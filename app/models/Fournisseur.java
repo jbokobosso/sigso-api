@@ -1,6 +1,7 @@
 package models;
 
 import io.ebean.Finder;
+import io.ebean.Model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Fournisseur {
+public class Fournisseur extends Model {
     @Id
     public Long idFournisseur;
 

@@ -9,7 +9,7 @@ import io.ebean.Finder;
 import java.util.Date;
 
 @Entity
-public class Sortie {
+public class Sortie extends Model {
     @Id
     public Long idSortie;
     public String raisonSortie;

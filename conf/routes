@@ -28,3 +28,30 @@ GET     /commande                         controllers.CommandeController.getAll(
 GET     /commande/:idCommande               controllers.CommandeController.getById(idCommande: Long)
 POST    /commande                         controllers.CommandeController.save(request:Request)
 PUT     /commande/:idCommande               controllers.CommandeController.update(request:Request, idCommande:Long)
+
+# CRUD table Vente
+GET     /vente                         controllers.VenteController.getAll()
+GET     /vente/:idVente               controllers.VenteController.getById(idVente: Long)
+POST    /vente                         controllers.VenteController.save(request:Request)
+PUT     /vente/:idVente               controllers.VenteController.update(request:Request, idVente:Long)
+
+# CRUD table Sortie
+GET     /sortie                         controllers.SortieController.getAll()
+GET     /sortie/:idSortie               controllers.SortieController.getById(idSortie: Long)
+POST    /sortie                         controllers.SortieController.save(request:Request)
+PUT     /sortie/:idSortie               controllers.SortieController.update(request:Request, idSortie:Long)
+
+# CRUD table Fournisseur
+GET     /fournisseur                         controllers.FournisseurController.getAll()
+GET     /fournisseur/:idFournisseur               controllers.FournisseurController.getById(idFournisseur: Long)
+POST    /fournisseur                         controllers.FournisseurController.save(request:Request)
+PUT     /fournisseur/:idFournisseur               controllers.FournisseurController.update(request:Request, idFournisseur:Long)
+
+# CRUD table Livraison
+GET     /livraison                         controllers.LivraisonController.getAll()
+GET     /livraison/:idLivraison               controllers.LivraisonController.getById(idLivraison: Long)
+POST    /livraison                         controllers.LivraisonController.save(request:Request)
+PUT     /livraison/:idLivraison               controllers.LivraisonController.update(request:Request, idLivraison:Long)
+
+
+
