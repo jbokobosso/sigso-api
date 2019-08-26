@@ -23,6 +23,10 @@ public class Commande extends Model {
     @JoinColumn(name = "id_client")
     public Client client;
 
+    @OneToOne(optional = false)
+    @JoinColumn(name = "id_panier")
+    public Panier panier;
+
     public  static Finder<Long, Commande> find = new Finder<>(Commande.class);
 
     public Commande() {
@@ -31,5 +35,16 @@ public class Commande extends Model {
     public Commande(Date dateCmde, Client client) {
         this.dateCmde = dateCmde;
         this.client = client;
+    }
+
+    public Commande(Long idCmde) {
+        this.idCmde = idCmde;
+    }
+
+    public Commande(Date dateCmde, List<Livraison> livraison, Client client, Panier panier) {
+        this.dateCmde = dateCmde;
+        this.livraison = livraison;
+        this.client = client;
+        this.panier = panier;
     }
 }
