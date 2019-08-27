@@ -65,6 +65,7 @@ create table livraison (
 
 create table panier (
   id_panier                     bigserial not null,
+  nom_panier                    varchar(255),
   constraint pk_panier primary key (id_panier)
 );
 

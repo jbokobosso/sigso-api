@@ -3,19 +3,17 @@ package controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import models.Sortie;
 import models.Client;
+import models.Sortie;
 import play.libs.Json;
+import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static play.mvc.Results.badRequest;
-import static play.mvc.Results.ok;
-
-public class SortieController {
+public class SortieController extends Controller {
 
     public Result getAll() {
         Object liste = Sortie.find.query().select("*").findList();

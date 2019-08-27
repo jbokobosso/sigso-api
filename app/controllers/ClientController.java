@@ -17,6 +17,8 @@ public class ClientController  extends Controller {
     public Result getClientsAll() {
         Object liste = Client.find.query().select("*").findList();
         return ok(Json.toJson(liste));
+
+        //return ok(liste.toString());
     }
 
 

@@ -5,14 +5,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.CatProduit;
 import play.libs.Json;
+import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import static play.mvc.Results.badRequest;
-import static play.mvc.Results.ok;
 
-public class CatProduitController {
+public class CatProduitController extends Controller {
 
     public Result getAll() {
         Object liste = CatProduit.find.query().select("*").findList();

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.Client;
 import play.libs.Json;
+import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import models.Achat;
@@ -14,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static play.mvc.Results.badRequest;
 import static play.mvc.Results.ok;
 
-public class AchatController {
+public class AchatController extends Controller {
 
     public Result getAll() {
         Object liste = Achat.find.query().select("*").findList();

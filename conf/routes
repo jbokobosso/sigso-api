@@ -53,5 +53,35 @@ GET     /livraison/:idLivraison               controllers.LivraisonController.ge
 POST    /livraison                         controllers.LivraisonController.save(request:Request)
 PUT     /livraison/:idLivraison               controllers.LivraisonController.update(request:Request, idLivraison:Long)
 
+# CRUD table Utilisateurs
+GET     /utilisateurs                         controllers.UtilisateursController.getAll()
+GET     /utilisateurs/:idUser               controllers.UtilisateursController.getById(idUser: Long)
+POST    /utilisateurs                         controllers.UtilisateursController.save(request:Request)
+PUT     /utilisateurs/:idUser               controllers.UtilisateursController.update(request:Request, idUser:Long)
+
+# CRUD table Stock
+GET     /stock                         controllers.StockController.getAll()
+GET     /stock/:idStock               controllers.StockController.getById(idStock: Long)
+POST    /stock                         controllers.StockController.save(request:Request)
+PUT     /stock/:idStock               controllers.StockController.update(request:Request, idStock:Long)
+
+# CRUD table Produit
+GET     /produit                         controllers.ProduitController.getAll()
+GET     /produit/:idProduit               controllers.ProduitController.getById(idProduit: Long)
+POST    /produit                         controllers.ProduitController.save(request:Request)
+PUT     /produit/:idProduit               controllers.ProduitController.update(request:Request, idProduit:Long)
+
+# CRUD table Panier
+GET     /panier                         controllers.PanierController.getAll()
+GET     /panier/:idPanier               controllers.PanierController.getById(idPanier: Long)
+POST    /panier                         controllers.PanierController.save(request:Request)
+PUT     /panier/:idPanier               controllers.PanierController.update(request:Request, idPanier:Long)
+
+# CRUD table ContenuPanier
+GET     /contenuPanier                         controllers.ContenuPanierController.getAll()
+GET     /contenuPanier/:idContenuPanier               controllers.ContenuPanierController.getById(idContenuPanier: Long)
+POST    /contenuPanier                         controllers.ContenuPanierController.save(request:Request)
+PUT     /contenuPanier/:idContenuPanier               controllers.ContenuPanierController.update(request:Request, idContenuPanier:Long)
+
 
 

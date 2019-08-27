@@ -12,6 +12,8 @@ public class Panier extends Model {
     @Id
     public Long idPanier;
 
+    public String nomPanier;
+
     @OneToOne(mappedBy = "panier")
     public List<Commande> commande;
 
@@ -19,17 +21,4 @@ public class Panier extends Model {
     public List<ContenuPanier> contenuPanier;
 
     public  static Finder<Long, Panier> find = new Finder<>(Panier.class);
-
-    public Long getIdPanier() {
-        return idPanier;
-    }
-
-    public Panier(Long idPanier) {
-        this.idPanier = idPanier;
-    }
-
-    public Panier(List<Commande> commande, List<ContenuPanier> contenuPanier) {
-        this.commande = commande;
-        this.contenuPanier = contenuPanier;
-    }
 }
