@@ -16,16 +16,9 @@ public class Commande extends Model {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     public Date dateCmde;
 
-    @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
-    List<Livraison> livraison;
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_client")
     public Client client;
-
-    @OneToOne(optional = false)
-    @JoinColumn(name = "id_panier")
-    public Panier panier;
 
     public  static Finder<Long, Commande> find = new Finder<>(Commande.class);
 
@@ -37,14 +30,4 @@ public class Commande extends Model {
         this.client = client;
     }
 
-    public Commande(Long idCmde) {
-        this.idCmde = idCmde;
-    }
-
-    public Commande(Date dateCmde, List<Livraison> livraison, Client client, Panier panier) {
-        this.dateCmde = dateCmde;
-        this.livraison = livraison;
-        this.client = client;
-        this.panier = panier;
-    }
 }

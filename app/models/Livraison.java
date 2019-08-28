@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.ebean.Finder;
 import io.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -19,7 +16,7 @@ public class Livraison extends Model {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     public Date dateLivraison;
 
-    @ManyToOne(optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "id_commande")
     public Commande commande;
 

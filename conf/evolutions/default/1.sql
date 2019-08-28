@@ -34,18 +34,7 @@ create table commande (
   id_cmde                       bigserial not null,
   date_cmde                     timestamptz,
   id_client                     bigint not null,
-  id_panier                     bigint not null,
-  constraint uq_commande_id_panier unique (id_panier),
   constraint pk_commande primary key (id_cmde)
-);
-
-create table contenu_panier (
-  id_contenu_panier             bigserial not null,
-  qte_produit                   bigint,
-  prix_vente                    float not null,
-  id_produit                    bigint not null,
-  id_panier                     bigint not null,
-  constraint pk_contenu_panier primary key (id_contenu_panier)
 );
 
 create table fournisseur (
@@ -60,12 +49,16 @@ create table livraison (
   id_livraison                  bigserial not null,
   date_livraison                timestamptz,
   id_commande                   bigint not null,
+  constraint uq_livraison_id_commande unique (id_commande),
   constraint pk_livraison primary key (id_livraison)
 );
 
 create table panier (
   id_panier                     bigserial not null,
-  nom_panier                    varchar(255),
+  id_cmde                       bigint not null,
+  id_produit                    bigint not null,
+  qte_produit                   bigint,
+  constraint uq_panier_id_cmde unique (id_cmde),
   constraint pk_panier primary key (id_panier)
 );
 
@@ -130,16 +123,12 @@ alter table achat add constraint fk_achat_id_produit foreign key (id_produit) re
 create index ix_commande_id_client on commande (id_client);
 alter table commande add constraint fk_commande_id_client foreign key (id_client) references client (id_client) on delete restrict on update restrict;
 
-alter table commande add constraint fk_commande_id_panier foreign key (id_panier) references panier (id_panier) on delete restrict on update restrict;
-
-create index ix_contenu_panier_id_produit on contenu_panier (id_produit);
-alter table contenu_panier add constraint fk_contenu_panier_id_produit foreign key (id_produit) references produit (id_produit) on delete restrict on update restrict;
-
-create index ix_contenu_panier_id_panier on contenu_panier (id_panier);
-alter table contenu_panier add constraint fk_contenu_panier_id_panier foreign key (id_panier) references panier (id_panier) on delete restrict on update restrict;
-
-create index ix_livraison_id_commande on livraison (id_commande);
 alter table livraison add constraint fk_livraison_id_commande foreign key (id_commande) references commande (id_cmde) on delete restrict on update restrict;
+
+alter table panier add constraint fk_panier_id_cmde foreign key (id_cmde) references commande (id_cmde) on delete restrict on update restrict;
+
+create index ix_panier_id_produit on panier (id_produit);
+alter table panier add constraint fk_panier_id_produit foreign key (id_produit) references produit (id_produit) on delete restrict on update restrict;
 
 create index ix_produit_id_catproduit on produit (id_catproduit);
 alter table produit add constraint fk_produit_id_catproduit foreign key (id_catproduit) references cat_produit (id_cat_prod) on delete restrict on update restrict;
@@ -171,16 +160,12 @@ drop index if exists ix_achat_id_produit;
 alter table if exists commande drop constraint if exists fk_commande_id_client;
 drop index if exists ix_commande_id_client;
 
-alter table if exists commande drop constraint if exists fk_commande_id_panier;
-
-alter table if exists contenu_panier drop constraint if exists fk_contenu_panier_id_produit;
-drop index if exists ix_contenu_panier_id_produit;
-
-alter table if exists contenu_panier drop constraint if exists fk_contenu_panier_id_panier;
-drop index if exists ix_contenu_panier_id_panier;
-
 alter table if exists livraison drop constraint if exists fk_livraison_id_commande;
-drop index if exists ix_livraison_id_commande;
+
+alter table if exists panier drop constraint if exists fk_panier_id_cmde;
+
+alter table if exists panier drop constraint if exists fk_panier_id_produit;
+drop index if exists ix_panier_id_produit;
 
 alter table if exists produit drop constraint if exists fk_produit_id_catproduit;
 drop index if exists ix_produit_id_catproduit;
@@ -204,8 +189,6 @@ drop table if exists cat_produit cascade;
 drop table if exists client cascade;
 
 drop table if exists commande cascade;
-
-drop table if exists contenu_panier cascade;
 
 drop table if exists fournisseur cascade;
 

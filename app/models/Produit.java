@@ -28,6 +28,9 @@ public class Produit extends Model {
 
     @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
     List<Achat> achat;
+
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
+    List<Panier> panier;
     
 
     public  static Finder<Long, Produit> find = new Finder<>(Produit.class);

@@ -77,11 +77,5 @@ GET     /panier/:idPanier               controllers.PanierController.getById(idP
 POST    /panier                         controllers.PanierController.save(request:Request)
 PUT     /panier/:idPanier               controllers.PanierController.update(request:Request, idPanier:Long)
 
-# CRUD table ContenuPanier
-GET     /contenuPanier                         controllers.ContenuPanierController.getAll()
-GET     /contenuPanier/:idContenuPanier               controllers.ContenuPanierController.getById(idContenuPanier: Long)
-POST    /contenuPanier                         controllers.ContenuPanierController.save(request:Request)
-PUT     /contenuPanier/:idContenuPanier               controllers.ContenuPanierController.update(request:Request, idContenuPanier:Long)
-
 
 

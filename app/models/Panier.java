@@ -12,13 +12,15 @@ public class Panier extends Model {
     @Id
     public Long idPanier;
 
-    public String nomPanier;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "id_cmde")
+    public Commande commande;
 
-    @OneToOne(mappedBy = "panier")
-    public List<Commande> commande;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_produit")
+    public Produit produit;
 
-    @OneToMany(mappedBy = "panier", cascade = CascadeType.ALL)
-    public List<ContenuPanier> contenuPanier;
+    public Long qteProduit;
 
     public  static Finder<Long, Panier> find = new Finder<>(Panier.class);
 }

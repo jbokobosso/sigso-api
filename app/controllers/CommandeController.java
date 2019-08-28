@@ -35,10 +35,10 @@ public class CommandeController extends Controller {
 
 
     public Result getById(Long commandeId) {
-        Commande commande = Commande.find.query().select("*").where().eq("id_commande", commandeId).findOne();
+        Commande commande = Commande.find.query().select("*").where().eq("id_cmde", commandeId).findOne();
 
         // This line below is to test if the client's id is null; if then, surely the request did not find any entry in database for the passed id
-        Object commandeTest = Commande.find.query().select("*").where().eq("id_commande", commandeId).findOne();
+        Object commandeTest = Commande.find.query().select("*").where().eq("id_cmde", commandeId).findOne();
 
         if(commandeTest != null) {
             return ok(Json.toJson(commande));
