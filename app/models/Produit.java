@@ -1,9 +1,11 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.ebean.Finder;
 import io.ebean.Model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -35,13 +37,11 @@ public class Produit extends Model {
 
     public  static Finder<Long, Produit> find = new Finder<>(Produit.class);
 
-    public Produit() {
-    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = true)
+    public Date deletedAt;
 
-    public Produit(String designation, boolean estPerissable, Double prixU, CatProduit catProduit) {
-        this.designation = designation;
-        this.estPerissable = estPerissable;
-        this.prixU = prixU;
-        this.catProduit = catProduit;
-    }
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false, nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    public Date createdAt;
 }

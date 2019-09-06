@@ -25,13 +25,7 @@ public class Stock extends Model {
 
     public  static Finder<Long, Stock> find = new Finder<>(Stock.class);
 
-    public Stock() {
-    }
-
-    public Stock(Integer qteStock, Date datePeremption, Boolean estValide, Achat achat) {
-        this.qteStock = qteStock;
-        this.datePeremption = datePeremption;
-        this.estValide = estValide;
-        this.achat = achat;
-    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = true)
+    public Date deletedAt;
 }

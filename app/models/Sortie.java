@@ -24,13 +24,7 @@ public class Sortie extends Model {
 
     public  static Finder<Long, Sortie> find = new Finder<>(Sortie.class);
 
-    public Sortie() {
-    }
-
-    public Sortie(String raisonSortie, Integer qteSortie, Date dateSortie, Produit produit) {
-        this.raisonSortie = raisonSortie;
-        this.qteSortie = qteSortie;
-        this.dateSortie = dateSortie;
-        this.produit = produit;
-    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = true)
+    public Date deletedAt;
 }

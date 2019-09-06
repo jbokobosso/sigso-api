@@ -22,12 +22,8 @@ public class Commande extends Model {
 
     public  static Finder<Long, Commande> find = new Finder<>(Commande.class);
 
-    public Commande() {
-    }
-
-    public Commande(Date dateCmde, Client client) {
-        this.dateCmde = dateCmde;
-        this.client = client;
-    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = true)
+    public Date deletedAt;
 
 }

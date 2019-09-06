@@ -22,11 +22,7 @@ public class Livraison extends Model {
 
     public  static Finder<Long, Livraison> find = new Finder<>(Livraison.class);
 
-    public Livraison() {
-    }
-
-    public Livraison(Date dateLivraison, Commande commande) {
-        this.dateLivraison = dateLivraison;
-        this.commande = commande;
-    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = true)
+    public Date deletedAt;
 }

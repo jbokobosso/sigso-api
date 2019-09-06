@@ -32,28 +32,11 @@ public class Achat extends Model {
     @JoinColumn(name = "id_produit")
     public Produit produit;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = true)
+    public Date deletedAt;
+
     public  static Finder<Long, Achat> find = new Finder<>(Achat.class);
-
-    public Achat() {
-    }
-
-    public Achat(Long idAchat, Integer qteAchat, Date dateAchat, Fournisseur fournisseur, Utilisateurs utilisateurs, Produit produit) {
-        this.idAchat = idAchat;
-        this.qteAchat = qteAchat;
-        this.dateAchat = dateAchat;
-        this.fournisseur = fournisseur;
-        this.utilisateurs = utilisateurs;
-        this.produit = produit;
-    }
-
-    public Achat(Integer qteAchat, Date dateAchat, Fournisseur fournisseur, Utilisateurs utilisateurs,
-                 Produit produit) {
-        this.qteAchat = qteAchat;
-        this.dateAchat = dateAchat;
-        this.fournisseur = fournisseur;
-        this.utilisateurs = utilisateurs;
-        this.produit = produit;
-    }
 
     
 }

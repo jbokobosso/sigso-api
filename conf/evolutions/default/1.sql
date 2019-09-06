@@ -10,6 +10,7 @@ create table achat (
   id_fournisseur                bigint not null,
   id_utilisateurs               bigint not null,
   id_produit                    bigint not null,
+  deleted_at                    timestamptz,
   constraint pk_achat primary key (id_achat)
 );
 
@@ -17,6 +18,8 @@ create table cat_produit (
   id_cat_prod                   bigserial not null,
   libelle_cat                   varchar(255),
   desc_cat_prod                 varchar(255),
+  deleted_at                    timestamptz,
+  created_at                    TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
   constraint pk_cat_produit primary key (id_cat_prod)
 );
 
@@ -27,6 +30,7 @@ create table client (
   email                         varchar(255),
   adresse_livraison             varchar(255),
   telephone                     varchar(255),
+  deleted_at                    timestamptz,
   constraint pk_client primary key (id_client)
 );
 
@@ -34,6 +38,7 @@ create table commande (
   id_cmde                       bigserial not null,
   date_cmde                     timestamptz,
   id_client                     bigint not null,
+  deleted_at                    timestamptz,
   constraint pk_commande primary key (id_cmde)
 );
 
@@ -42,6 +47,7 @@ create table fournisseur (
   raison_sociale                varchar(255),
   tel                           varchar(255),
   adresse_fournisseur           varchar(255),
+  deleted_at                    timestamptz,
   constraint pk_fournisseur primary key (id_fournisseur)
 );
 
@@ -49,6 +55,7 @@ create table livraison (
   id_livraison                  bigserial not null,
   date_livraison                timestamptz,
   id_commande                   bigint not null,
+  deleted_at                    timestamptz,
   constraint uq_livraison_id_commande unique (id_commande),
   constraint pk_livraison primary key (id_livraison)
 );
@@ -58,6 +65,7 @@ create table panier (
   id_cmde                       bigint not null,
   id_produit                    bigint not null,
   qte_produit                   bigint,
+  deleted_at                    timestamptz,
   constraint uq_panier_id_cmde unique (id_cmde),
   constraint pk_panier primary key (id_panier)
 );
@@ -68,6 +76,8 @@ create table produit (
   est_perissable                boolean default false not null,
   prix_u                        float,
   id_catproduit                 bigint not null,
+  deleted_at                    timestamptz,
+  created_at                    TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
   constraint pk_produit primary key (id_produit)
 );
 
@@ -77,6 +87,7 @@ create table sortie (
   qte_sortie                    integer,
   date_sortie                   timestamptz,
   id_produit                    bigint not null,
+  deleted_at                    timestamptz,
   constraint pk_sortie primary key (id_sortie)
 );
 
@@ -86,6 +97,7 @@ create table stock (
   date_peremption               timestamptz,
   est_valide                    boolean,
   id_achat                      bigint not null,
+  deleted_at                    timestamptz,
   constraint pk_stock primary key (id_stock)
 );
 
@@ -98,6 +110,7 @@ create table utilisateurs (
   pseudo                        varchar(255),
   mdp                           varchar(255),
   type_utilisateur              varchar(255),
+  deleted_at                    timestamptz,
   constraint pk_utilisateurs primary key (id_utilisateur)
 );
 
@@ -108,6 +121,7 @@ create table vente (
   prix_vente                    float,
   id_produit                    bigint not null,
   id_client                     bigint not null,
+  deleted_at                    timestamptz,
   constraint pk_vente primary key (id_vente)
 );
 

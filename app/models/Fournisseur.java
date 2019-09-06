@@ -1,12 +1,11 @@
 package models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.ebean.Finder;
 import io.ebean.Model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,12 +20,7 @@ public class Fournisseur extends Model {
 
     public  static Finder<Long, Fournisseur> find = new Finder<>(Fournisseur.class);
 
-    public Fournisseur() {
-    }
-
-    public Fournisseur(String raisonSociale, String tel, String adresseFournisseur) {
-        this.raisonSociale = raisonSociale;
-        this.tel = tel;
-        this.adresseFournisseur = adresseFournisseur;
-    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = true)
+    public Date deletedAt;
 }

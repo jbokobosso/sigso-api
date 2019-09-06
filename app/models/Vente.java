@@ -31,16 +31,8 @@ public class Vente extends Model {
 
     public static Finder<Long, Vente> find = new Finder<>(Vente.class);
 
-    public Vente() {
-
-    }
-
-    public Vente(Integer qteProduit, Date dateVente, Double prixVente, Produit produit, Client client) {
-        this.qteProduit = qteProduit;
-        this.dateVente = dateVente;
-        this.prixVente = prixVente;
-        this.produit = produit;
-        this.client = client;
-    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = true)
+    public Date deletedAt;
 
 }
