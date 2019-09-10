@@ -20,6 +20,9 @@ public class Livraison extends Model {
     @JoinColumn(name = "id_commande")
     public Commande commande;
 
+    @Enumerated(EnumType.STRING)
+    public EtatLivraison etatLivraison;
+
     public  static Finder<Long, Livraison> find = new Finder<>(Livraison.class);
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

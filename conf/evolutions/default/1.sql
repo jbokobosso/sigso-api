@@ -42,6 +42,16 @@ create table commande (
   constraint pk_commande primary key (id_cmde)
 );
 
+create table contenu_vente (
+  id_contenu_vente              bigserial not null,
+  id_vente                      bigint not null,
+  id_produit                    bigint not null,
+  qte_produit                   bigint,
+  deleted_at                    timestamptz,
+  constraint uq_contenu_vente_id_vente unique (id_vente),
+  constraint pk_contenu_vente primary key (id_contenu_vente)
+);
+
 create table fournisseur (
   id_fournisseur                bigserial not null,
   raison_sociale                varchar(255),
@@ -55,7 +65,9 @@ create table livraison (
   id_livraison                  bigserial not null,
   date_livraison                timestamptz,
   id_commande                   bigint not null,
+  etat_livraison                varchar(9),
   deleted_at                    timestamptz,
+  constraint ck_livraison_etat_livraison check ( etat_livraison in ('livre','non_livre')),
   constraint uq_livraison_id_commande unique (id_commande),
   constraint pk_livraison primary key (id_livraison)
 );
@@ -137,6 +149,11 @@ alter table achat add constraint fk_achat_id_produit foreign key (id_produit) re
 create index ix_commande_id_client on commande (id_client);
 alter table commande add constraint fk_commande_id_client foreign key (id_client) references client (id_client) on delete restrict on update restrict;
 
+alter table contenu_vente add constraint fk_contenu_vente_id_vente foreign key (id_vente) references vente (id_vente) on delete restrict on update restrict;
+
+create index ix_contenu_vente_id_produit on contenu_vente (id_produit);
+alter table contenu_vente add constraint fk_contenu_vente_id_produit foreign key (id_produit) references produit (id_produit) on delete restrict on update restrict;
+
 alter table livraison add constraint fk_livraison_id_commande foreign key (id_commande) references commande (id_cmde) on delete restrict on update restrict;
 
 alter table panier add constraint fk_panier_id_cmde foreign key (id_cmde) references commande (id_cmde) on delete restrict on update restrict;
@@ -174,6 +191,11 @@ drop index if exists ix_achat_id_produit;
 alter table if exists commande drop constraint if exists fk_commande_id_client;
 drop index if exists ix_commande_id_client;
 
+alter table if exists contenu_vente drop constraint if exists fk_contenu_vente_id_vente;
+
+alter table if exists contenu_vente drop constraint if exists fk_contenu_vente_id_produit;
+drop index if exists ix_contenu_vente_id_produit;
+
 alter table if exists livraison drop constraint if exists fk_livraison_id_commande;
 
 alter table if exists panier drop constraint if exists fk_panier_id_cmde;
@@ -203,6 +225,8 @@ drop table if exists cat_produit cascade;
 drop table if exists client cascade;
 
 drop table if exists commande cascade;
+
+drop table if exists contenu_vente cascade;
 
 drop table if exists fournisseur cascade;
 
