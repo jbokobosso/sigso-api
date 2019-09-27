@@ -41,6 +41,12 @@ GET     /sortie/:idSortie               controllers.SortieController.getById(idS
 POST    /sortie                         controllers.SortieController.save(request:Request)
 PUT     /sortie/:idSortie               controllers.SortieController.update(request:Request, idSortie:Long)
 
+# CRUD table Entree
+GET     /entree                         controllers.EntreeController.getAll()
+GET     /entree/:idEntree               controllers.EntreeController.getById(idEntree: Long)
+POST    /entree                         controllers.EntreeController.save(request:Request)
+PUT     /entree/:idEntree               controllers.EntreeController.update(request:Request, idEntree:Long)
+
 # CRUD table Fournisseur
 GET     /fournisseur                         controllers.FournisseurController.getAll()
 GET     /fournisseur/:idFournisseur               controllers.FournisseurController.getById(idFournisseur: Long)

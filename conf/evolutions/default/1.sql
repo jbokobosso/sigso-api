@@ -52,6 +52,16 @@ create table contenu_vente (
   constraint pk_contenu_vente primary key (id_contenu_vente)
 );
 
+create table entree (
+  id_entree                     bigserial not null,
+  raison_entree                 varchar(255),
+  qte_entree                    integer,
+  date_entree                   timestamptz,
+  id_produit                    bigint not null,
+  deleted_at                    timestamptz,
+  constraint pk_entree primary key (id_entree)
+);
+
 create table fournisseur (
   id_fournisseur                bigserial not null,
   raison_sociale                varchar(255),
@@ -154,6 +164,9 @@ alter table contenu_vente add constraint fk_contenu_vente_id_vente foreign key (
 create index ix_contenu_vente_id_produit on contenu_vente (id_produit);
 alter table contenu_vente add constraint fk_contenu_vente_id_produit foreign key (id_produit) references produit (id_produit) on delete restrict on update restrict;
 
+create index ix_entree_id_produit on entree (id_produit);
+alter table entree add constraint fk_entree_id_produit foreign key (id_produit) references produit (id_produit) on delete restrict on update restrict;
+
 alter table livraison add constraint fk_livraison_id_commande foreign key (id_commande) references commande (id_cmde) on delete restrict on update restrict;
 
 alter table panier add constraint fk_panier_id_cmde foreign key (id_cmde) references commande (id_cmde) on delete restrict on update restrict;
@@ -196,6 +209,9 @@ alter table if exists contenu_vente drop constraint if exists fk_contenu_vente_i
 alter table if exists contenu_vente drop constraint if exists fk_contenu_vente_id_produit;
 drop index if exists ix_contenu_vente_id_produit;
 
+alter table if exists entree drop constraint if exists fk_entree_id_produit;
+drop index if exists ix_entree_id_produit;
+
 alter table if exists livraison drop constraint if exists fk_livraison_id_commande;
 
 alter table if exists panier drop constraint if exists fk_panier_id_cmde;
@@ -227,6 +243,8 @@ drop table if exists client cascade;
 drop table if exists commande cascade;
 
 drop table if exists contenu_vente cascade;
+
+drop table if exists entree cascade;
 
 drop table if exists fournisseur cascade;
 

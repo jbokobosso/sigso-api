@@ -26,6 +26,9 @@ public class Produit extends Model {
     List<Sortie> sortie;
 
     @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
+    List<Entree> entree;
+
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
     List<Vente> vente;
 
     @OneToMany(mappedBy = "produit", cascade = CascadeType.ALL)
